@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+       .messageColor {
+           color: red;
+       }
+    </style>
+</head>
+<body>
+    <div id="app" v-on:click="divClick">
+        <input v-model="reverseMessage" :class="[isShow ? 'messageColor' : '']"  :style="{ fontSize: '20px' }">
+        <input v-model="reverseMessage2" >
+        <input v-once v-model="reverseMessage3">
+        <input v-model="fullMessage">
+        <input @keyup.up="submit" placeholder="default">
+        <button v-on:click="changeMessage" v-bind:disabled="isShow">change</button>
+        <span v-if="isShow" v-bind:title="'aaa'+message2" v-on:click="valueChange">鼠标悬停</span>
+        <span v-else>no</span>
+        <user-list
+                v-if="users.length > 0"
+                v-for="user in reverseUsers"
+                v-bind:user="user"
+                v-bind:key="user.id">
+        </user-list>
+        <select v-model="selected">
+            <option v-for="user in reverseUsers" value="user.id">{{user.name}}</option>
+        </select>
+    </div>
+    <script src="UserLsitComponent.js"></script>
+    <script src="test.js"></script>
+</body>
+</html>
